@@ -1,0 +1,25 @@
+---
+- name: Add Microsoft packages repository
+  become: yes
+  block:
+  - name: Add Microsoft gpg key
+    apt_key:
+      url: "{{ microsoft_gpg_key_url }}"
+      state: present
+
+  - name: Add Microsoft package repository
+    apt_repository:
+      repo: "{{ microsoft_repo }}"
+      state: present
+      update_cache: yes
+  when: ansible_os_family | lower == 'debian'
+
+- name: Install dotnet-core package
+  become: true
+  package:
+    name: "dotnet-sdk-{{ dotnetcore_version }}"
+    state: present
+    update_cache: true
+  register: result
+  retries: 3
+  until: result is succeeded

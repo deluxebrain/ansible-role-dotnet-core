@@ -1,0 +1,5 @@
+---
+microsoft_repo: "deb [arch=amd64] https://packages.microsoft.com/\
+  {{ ansible_distribution | lower }}/\
+  {{ ansible_distribution_version | lower }}/\
+  prod {{ ansible_distribution_release | lower }} main"
