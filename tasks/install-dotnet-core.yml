@@ -7,7 +7,7 @@
       url: "{{ microsoft_gpg_key_url }}"
       state: present
 
-  - name: Add Microsoft package repository
+  - name: Add Microsoft packages repository
     apt_repository:
       repo: "{{ microsoft_repo }}"
       state: present

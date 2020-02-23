@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+
+  tasks:
+    - name: "Include ansible-role-dotnet-core"
+      include_role:
+        name: "ansible-role-dotnet-core"
+      vars:
+        dotnetcore_version: 3.1

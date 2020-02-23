@@ -1,0 +1,14 @@
+---
+- name: Verify
+  hosts: all
+
+  tasks:
+    - name: "Verify .Net Core is installed"
+      shell: >-
+        dotnet --list-sdks | sed -E 's/([0-9\.]+).*/\1/' | cut -d . -f1,2
+      register: dotnet_command
+
+    - assert:
+        that: "'3.1' in dotnet_command.stdout"
+        fail_msg: ".Net Core 3.1 is not installed"
+        success_msg: ".Net Core 3.1 is installed"
