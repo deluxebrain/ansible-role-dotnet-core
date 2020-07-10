@@ -1,17 +1,17 @@
 ---
-- name: Load variables for the target system
+- name: "Load variables for the target system"
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_os_family | lower }}.yml"
     - default.yml
 
-- name: Set apt to use https
+- name: "Set apt to use https"
   become: yes
   apt:
     name: apt-transport-https
     state: present
 
-- name: Install system dependencies
+- name: "Install system dependencies"
   become: yes
   package:
     name: "{{ item }}"
